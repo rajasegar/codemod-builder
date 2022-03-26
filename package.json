@@ -1,0 +1,23 @@
+{
+  "name": "vite-recast",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "assert": "^2.0.0",
+    "vite": "^2.8.0"
+  },
+  "dependencies": {
+    "@codemirror/basic-setup": "^0.19.1",
+    "@codemirror/lang-javascript": "^0.19.7",
+    "@codemirror/state": "^0.19.9",
+    "ast-node-builder": "^4.0.0",
+    "ast-node-finder": "^2.0.9",
+    "recast": "^0.21.0",
+    "split.js": "^1.6.5"
+  }
+}
