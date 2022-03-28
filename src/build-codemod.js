@@ -6,7 +6,7 @@ import { babel, glimmer } from "ast-node-finder";
 
 const { dispatchNodes } = babel;
 
-export default function (source, dest, mode) {
+export default function (source, dest, mode, opCode) {
   let ast = recast.parse(source);
   let _transformTemplate = "";
   let transformLogic = "";
@@ -23,7 +23,6 @@ export default function (source, dest, mode) {
 
     transformLogic = dispatchNodes(ast).join();
     const smartOp = "";
-    const opCode = document.getElementById("lst-opcode").value;
     let _opQuery =
       isSmartUpdate && _allowSmartUpdate
         ? smartOp
@@ -40,7 +39,7 @@ export default function (source, dest, mode) {
         return root.toSource();
       };`;
   } else {
-    let _opQuery = this.get("opQuery");
+      let _opQuery = opQuery(mode, opCode, dest);
     transformLogic = glimmer.dispatchNodes(ast, _opQuery).join();
 
     _transformTemplate = `

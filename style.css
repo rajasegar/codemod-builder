@@ -81,4 +81,12 @@ footer {
 
 select {
   margin: 10px;
+  background: white;
+border: 1px solid gray;
+border-radius: 4px;
+padding: 2px;
+}
+
+h1 {
+    font-weight: lighter;
 }
