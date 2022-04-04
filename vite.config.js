@@ -1,6 +1,5 @@
 export default {
-    define: {
-      "process.env": {},
-    },
-
-  }
+	define: {
+		"process.env": {},
+	},
+};

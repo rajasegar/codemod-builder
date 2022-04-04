@@ -36,8 +36,10 @@ function opQueryJS(nodeOp, dest) {
   return str;
 }
 
-function opQueryGlimmer(nodeOp, dest) {
+async function opQueryGlimmer(nodeOp, dest) {
   let str = "";
+
+    const { parse } = await import('ember-template-recast');
 
   switch (nodeOp) {
     case "remove":
@@ -45,13 +47,15 @@ function opQueryGlimmer(nodeOp, dest) {
       break;
 
     case "replace":
-      str = `return ${hbsBuilder.buildAST(etr.parse(dest))};`;
+      str = `return ${hbsBuilder.buildAST(parse(dest))};`;
       break;
   }
-  return str;
+    return new Promise((resolve, reject) => {
+	resolve(str);
+    });
 }
 
-export default function opQuery(mode, nodeOp, dest) {
+export default async function opQuery(mode, nodeOp, dest) {
   let _query = "";
   switch (mode) {
     case "javascript":
@@ -59,7 +63,7 @@ export default function opQuery(mode, nodeOp, dest) {
       break;
 
     case "handlebars":
-      _query = opQueryGlimmer(nodeOp, dest);
+      _query = await opQueryGlimmer(nodeOp, dest);
       break;
   }
   return _query;
